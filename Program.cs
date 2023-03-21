@@ -1,24 +1,36 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class penjumlahan
+﻿public class SimpleDataBase<T>
 {
-    public T JumlahTigaAngka<T>(T num1, T num2, T num3)
+    private List<T> storedData;
+    private List<DateTime> inputDates;
+
+    public SimpleDataBase()
     {
-        dynamic number1 = num1;
-        dynamic number2 = num2;
-        dynamic number3 = num3;
-        return number1 +number2 +number3;
+        this.storedData = new List<T>();
+        this.inputDates = new List<DateTime>();
+    }
+
+    public void AddNewData(T data)
+    {
+        this.storedData.Add(data);
+        this.inputDates.Add(DateTime.Now);
+    }
+
+    public void PrintAllData()
+    {
+        for(int i = 0; i < this.inputDates.Count; i++)
+        {
+            Console.WriteLine("Data " + (i+1) +"Berisi: "+ this.storedData[i] +"yang disimpan pada waktu "+ this.inputDates[i]);
+        }
     }
 }
-
 public class program
 {
     public static void Main(string[] args)
     {
-        penjumlahan jum = new penjumlahan();
-        int a = 13;
-        int b = 02;
-        int c = 21;
-        Console.WriteLine(jum.JumlahTigaAngka(a, b, c));
-
+        SimpleDataBase<int> data = new SimpleDataBase<int>();
+        data.AddNewData(13);
+        data.AddNewData(02);
+        data.AddNewData(21);
+        data.PrintAllData();
     }
 }
